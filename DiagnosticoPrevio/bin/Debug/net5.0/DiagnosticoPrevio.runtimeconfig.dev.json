@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\fdsam\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\fdsam\\.nuget\\packages"
+    ]
+  }
+}

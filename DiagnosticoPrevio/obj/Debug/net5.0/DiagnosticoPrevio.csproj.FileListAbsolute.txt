@@ -1,0 +1,16 @@
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\bin\Debug\net5.0\DiagnosticoPrevio.exe
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\bin\Debug\net5.0\DiagnosticoPrevio.deps.json
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\bin\Debug\net5.0\DiagnosticoPrevio.runtimeconfig.json
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\bin\Debug\net5.0\DiagnosticoPrevio.runtimeconfig.dev.json
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\bin\Debug\net5.0\DiagnosticoPrevio.dll
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\bin\Debug\net5.0\DiagnosticoPrevio.pdb
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.csproj.AssemblyReference.cache
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.AssemblyInfoInputs.cache
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.AssemblyInfo.cs
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.csproj.CoreCompileInputs.cache
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.dll
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\refint\DiagnosticoPrevio.dll
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.pdb
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\DiagnosticoPrevio.genruntimeconfig.cache
+C:\Users\fdsam\source\repos\DiagnosticoPrevio\DiagnosticoPrevio\obj\Debug\net5.0\ref\DiagnosticoPrevio.dll
