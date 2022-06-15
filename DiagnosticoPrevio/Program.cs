@@ -71,11 +71,9 @@ namespace DiagnosticoPrevio
 
                     //Obtenção do Peso:
                     Console.Write("\nÓtimo! Por gentileza, agora insira o seu peso em Kg (máximo: 600): ");
-                    valido = double.TryParse(Console.ReadLine().Replace(".", ",").ToString(CultureInfo.GetCultureInfo("pt-br")), out peso);//Replace possibilita a inserção
+                    valido = double.TryParse(Console.ReadLine().Replace(".", ","), out peso);//Replace possibilita a inserção
                                                                                              //de valores decimais com ponto
-                                                                                             //ou vírgula. GetCultureInfo permite a leitura correta
-                                                                                             //de valores decimais em computadores com qualquer 
-                                                                                             //língua principal do sistema
+                                                                                             //ou vírgula. 
 
                     //Validação do Peso (Invalidadando não números, pesos negativos e nulos ou superiores a 600 (valor um pouco superior
                     //ao máximo registrado pelo ser humano)):
@@ -83,13 +81,13 @@ namespace DiagnosticoPrevio
                     {
                         Console.Clear();
                         Console.Write("\nDesculpe, não consegui entender o seu peso. Lembre de digitá-lo em Kg (apenas valores positivos, máximo: 600)!\n\nInsira novamente: ");
-                        valido = double.TryParse(Console.ReadLine().Replace(".", ",").ToString(CultureInfo.GetCultureInfo("pt-br")), out peso);
+                        valido = double.TryParse(Console.ReadLine().Replace(".", ","), out peso);
                     }
 
 
                     //Obtenção da Altura:
                     Console.Write("\nPara finalizarmos, por favor insira a sua altura em metros (máximo: 2,6): ");
-                    valido = double.TryParse(Console.ReadLine().Replace(".",",").ToString(CultureInfo.GetCultureInfo("pt-br")), out altura);
+                    valido = double.TryParse(Console.ReadLine().Replace(".",","), out altura);
 
                     //Validação da Altura (Invalidando não números, alturas negativas e nulas ou superiores a 2.6 (valor um pouco superior
                     //ao máximo registrado pelo ser humano):
@@ -97,7 +95,7 @@ namespace DiagnosticoPrevio
                     {
                         Console.Clear();
                         Console.Write("\nDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros (apenas valores positivos, máximo: 2,6)!\n\nInsira novamente: ");
-                        valido = double.TryParse(Console.ReadLine().Replace(".", ",").ToString(CultureInfo.GetCultureInfo("pt-br")), out altura);
+                        valido = double.TryParse(Console.ReadLine().Replace(".", ","), out altura);
                     }
 
                     Console.Clear();
@@ -180,16 +178,16 @@ namespace DiagnosticoPrevio
 
             Console.Clear();
             Console.WriteLine("\nObrigado pela preferência!\n\nAté mais e siga com saúde!\n\n");
-
-
-            double Imc(double altura, double peso)
+                        
+        }
+            static double Imc(double altura, double peso)
             {
                 double imc = peso / Math.Pow(altura, 2);
                 
                 return imc;
             }
 
-            string Riscos(double imc)
+            static string Riscos(double imc)
             {
                 string risks = null;
 
@@ -209,7 +207,7 @@ namespace DiagnosticoPrevio
                 return risks;
             }
 
-            string Recomendacoes(double imc)
+            static string Recomendacoes(double imc)
             {
                 string recom = null;
 
@@ -231,7 +229,7 @@ namespace DiagnosticoPrevio
                 return recom;
             }
 
-            string CategoriaImc(double imc)
+            static string CategoriaImc(double imc)
             {
                 string catImc = null;
 
@@ -248,7 +246,7 @@ namespace DiagnosticoPrevio
                 return catImc;
             }
 
-            string Categoria(int idade)
+            static string Categoria(int idade)
             {
                 string cat = null;
 
@@ -259,7 +257,5 @@ namespace DiagnosticoPrevio
 
                 return cat;
             }
-
-        }
     }
 }
