@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace DiagnosticoPrevio
 {
@@ -22,6 +23,14 @@ namespace DiagnosticoPrevio
                     Console.Write("\nOlá! Bem vindo(a) ao programa de Diagnóstico Prévio do nutricionista Luciano!\n\n" +
                                       "Para começarmos, por favor insira seu nome: ");
                     nome = Console.ReadLine();
+
+                    while (string.IsNullOrWhiteSpace(nome))
+                    {
+                        Console.Clear();
+                        Console.Write("\nPoxa, infelizmente este não é um nome válido...\n\nTente novamente: ");
+                        nome = Console.ReadLine();
+                    }
+
                     Console.Clear();
 
                     //Obtenção do Sexo:
@@ -34,7 +43,8 @@ namespace DiagnosticoPrevio
                     while (sexo != "M" && sexo != "F")
                     {
                         Console.Clear();
-                        Console.Write("\nDesculpe, não consegui entender qual é o seu sexo.\n\nInsira novamente (M/F): ");
+                        Console.Write("\nDesculpe, não consegui entender qual é o seu sexo.\n\nInsira novamente (M para Masculino" +
+                                      " e F para Feminino): ");
                         sexo = Console.ReadLine();
                         sexo = sexo.ToUpper();
                     }
@@ -61,7 +71,11 @@ namespace DiagnosticoPrevio
 
                     //Obtenção do Peso:
                     Console.Write("\nÓtimo! Por gentileza, agora insira o seu peso em Kg (máximo: 600): ");
-                    valido = double.TryParse(Console.ReadLine(), out peso);
+                    valido = double.TryParse(Console.ReadLine().Replace(".", ",").ToString(CultureInfo.GetCultureInfo("pt-br")), out peso);//Replace possibilita a inserção
+                                                                                             //de valores decimais com ponto
+                                                                                             //ou vírgula. GetCultureInfo permite a leitura correta
+                                                                                             //de valores decimais em computadores com qualquer 
+                                                                                             //língua principal do sistema
 
                     //Validação do Peso (Invalidadando não números, pesos negativos e nulos ou superiores a 600 (valor um pouco superior
                     //ao máximo registrado pelo ser humano)):
@@ -69,13 +83,13 @@ namespace DiagnosticoPrevio
                     {
                         Console.Clear();
                         Console.Write("\nDesculpe, não consegui entender o seu peso. Lembre de digitá-lo em Kg (apenas valores positivos, máximo: 600)!\n\nInsira novamente: ");
-                        valido = double.TryParse(Console.ReadLine(), out peso);
+                        valido = double.TryParse(Console.ReadLine().Replace(".", ",").ToString(CultureInfo.GetCultureInfo("pt-br")), out peso);
                     }
 
 
                     //Obtenção da Altura:
                     Console.Write("\nPara finalizarmos, por favor insira a sua altura em metros (máximo: 2,6): ");
-                    valido = double.TryParse(Console.ReadLine(), out altura);
+                    valido = double.TryParse(Console.ReadLine().Replace(".",",").ToString(CultureInfo.GetCultureInfo("pt-br")), out altura);
 
                     //Validação da Altura (Invalidando não números, alturas negativas e nulas ou superiores a 2.6 (valor um pouco superior
                     //ao máximo registrado pelo ser humano):
@@ -83,7 +97,7 @@ namespace DiagnosticoPrevio
                     {
                         Console.Clear();
                         Console.Write("\nDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros (apenas valores positivos, máximo: 2,6)!\n\nInsira novamente: ");
-                        valido = double.TryParse(Console.ReadLine(), out altura);
+                        valido = double.TryParse(Console.ReadLine().Replace(".", ",").ToString(CultureInfo.GetCultureInfo("pt-br")), out altura);
                     }
 
                     Console.Clear();
@@ -95,7 +109,7 @@ namespace DiagnosticoPrevio
                                   $"\nIdade: {idade}" +
                                   $"\nPeso: {peso}" +
                                   $"\nAltura: {altura}" +
-                                  $"\n\nGostaria de reinserir os dados fornecidos(S/N)? ");
+                                  $"\n\nConfirmar dados (S/N)? ");
 
                     
                     loop = Console.ReadLine();
@@ -112,7 +126,7 @@ namespace DiagnosticoPrevio
 
                     Console.Clear();
 
-                } while(loop == "S");
+                } while(loop == "N");
 
 
                 //Definição da Categoria do Paciente:
