@@ -70,7 +70,7 @@ namespace DiagnosticoPrevio
 
 
                     //Obtenção do Peso:
-                    Console.Write("\nÓtimo! Por gentileza, agora insira o seu peso em Kg (máximo: 600): ");
+                    Console.Write("\nÓtimo! Por gentileza, agora insira o seu peso em Kg (use como separador a vírgula (,), máximo: 600): ");
                     valido = double.TryParse(Console.ReadLine().Replace(".", ","), out peso);//Replace possibilita a inserção
                                                                                              //de valores decimais com ponto
                                                                                              //ou vírgula. 
@@ -80,13 +80,13 @@ namespace DiagnosticoPrevio
                     while (valido == false || peso <= 0 || peso > 600)
                     {
                         Console.Clear();
-                        Console.Write("\nDesculpe, não consegui entender o seu peso. Lembre de digitá-lo em Kg (apenas valores positivos, máximo: 600)!\n\nInsira novamente: ");
+                        Console.Write("\nDesculpe, não consegui entender o seu peso. Lembre de digitá-lo em Kg (apenas valores positivos, use como separador a vírgula (,), máximo: 600)!\n\nInsira novamente: ");
                         valido = double.TryParse(Console.ReadLine().Replace(".", ","), out peso);
                     }
 
 
                     //Obtenção da Altura:
-                    Console.Write("\nPara finalizarmos, por favor insira a sua altura em metros (máximo: 2,6): ");
+                    Console.Write("\nPara finalizarmos, por favor insira a sua altura em metros (use como separador a vírgula (,), máximo: 2,6): ");
                     valido = double.TryParse(Console.ReadLine().Replace(".",","), out altura);
 
                     //Validação da Altura (Invalidando não números, alturas negativas e nulas ou superiores a 2.6 (valor um pouco superior
@@ -94,7 +94,7 @@ namespace DiagnosticoPrevio
                     while (valido == false || altura <= 0 || altura > 2.6)
                     {
                         Console.Clear();
-                        Console.Write("\nDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros (apenas valores positivos, máximo: 2,6)!\n\nInsira novamente: ");
+                        Console.Write("\nDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros (apenas valores positivos, use como separador a vírgula (,), máximo: 2,6)!\n\nInsira novamente: ");
                         valido = double.TryParse(Console.ReadLine().Replace(".", ","), out altura);
                     }
 
