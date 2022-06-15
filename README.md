@@ -1,6 +1,6 @@
 # Desafio Entry Point - BRQ
 
-####Regras do Desafio:
+###Regras do Desafio:
 - Criar um programa capaz de calcular o IMC (Índice de Massa Corpórea) do usuário.
 - O Programa deve ler as informações do usuário (Nome, Sexo, Idade, Peso e Altura).
 - Utilizar os conhecimentos adquiridos no curso disponibilizado pela ***EduSync***.
