@@ -19,23 +19,30 @@ namespace DiagnosticoPrevio
                 //Obtenção dos Dados:
                 do
                 {
+                    Cabecalho();
+
                     //Obtenção do Nome:
-                    Console.Write("\n\tOlá! Bem vindo(a) ao programa de Diagnóstico Prévio do nutricionista Luciano!\n\n" +
-                                      "\tPara começarmos, por favor insira seu nome: "); //O "\n" quebra a linha de impressão no console
-                                                                                         //O "\t" adiciona um recuo à esquerda na impressão
+                    Console.Write("\n\n\tOlá! Bem vindo(a) ao programa de Diagnóstico Prévio do nutricionista Luciano!\n\n");
+                    Divisorias("=");
+                    Console.Write("\tPara começarmos, por favor insira seu nome: ");//O "\n" quebra a linha de impressão no console
+                                                                                     //O "\t" adiciona um recuo à esquerda na impressão
                     nome = Console.ReadLine();
 
                     while (string.IsNullOrWhiteSpace(nome))
                     {
                         Console.Clear();
-                        Console.Write("\n\tPoxa, infelizmente este não é um nome válido...\n\n\tTente novamente: ");
+                        Cabecalho();
+                        Console.Write("\n\n\tPoxa, infelizmente este não é um nome válido...\n\n\tTente novamente: ");
                         nome = Console.ReadLine();
                     }
 
                     Console.Clear();
+                    Cabecalho();
 
+                    Console.Write($"\n\n\tBem vindo(a), {nome}!\n\n");
+                    
                     //Obtenção do Sexo:
-                    Console.Write($"\n\tBem vindo(a), {nome}! Por favor, insira seu sexo (M/F): ");
+                    Console.Write("\tPor favor, insira seu sexo (M/F): ");
                     sexo = Console.ReadLine();
                     sexo = sexo.ToUpper(); //Coloca a string "sexo" em caixa alta para tornar indiferente a escolha entre
                                            //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
@@ -44,7 +51,8 @@ namespace DiagnosticoPrevio
                     while (sexo != "M" && sexo != "F")
                     {
                         Console.Clear();
-                        Console.Write("\n\tDesculpe, não consegui entender qual é o seu sexo.\n\n\tInsira novamente (M para Masculino" +
+                        Cabecalho();
+                        Console.Write("\n\n\tDesculpe, não consegui entender qual é o seu sexo.\n\n\tInsira novamente (M para Masculino" +
                                       " e F para Feminino): ");
                         sexo = Console.ReadLine();
                         sexo = sexo.ToUpper();
@@ -65,7 +73,8 @@ namespace DiagnosticoPrevio
                     while (valido == false || idade <= 0 || idade > 125)
                     {
                         Console.Clear();
-                        Console.Write("\n\tDesculpe, não consegui entender a sua idade. Lembre de digitá-la em anos completos! \n\t(apenas valores positivos, máximo: 125)\n\n\tInsira novamente: ");
+                        Cabecalho();
+                        Console.Write("\n\n\tDesculpe, não consegui entender a sua idade. Lembre de digitá-la em anos completos! \n\t(apenas valores positivos, máximo: 125)\n\n\tInsira novamente: ");
                         valido = int.TryParse(Console.ReadLine(), out idade);
                     }
 
@@ -84,7 +93,8 @@ namespace DiagnosticoPrevio
                     while (valido == false || peso <= 0 || peso > 600)
                     {
                         Console.Clear();
-                        Console.Write("\n\tDesculpe, não consegui entender o seu peso. Lembre de digitá-lo em Kg! \n\t(apenas valores positivos, máximo: 600)\n\n\tInsira novamente: ");
+                        Cabecalho();
+                        Console.Write("\n\n\tDesculpe, não consegui entender o seu peso. Lembre de digitá-lo em Kg! \n\t(apenas valores positivos, máximo: 600)\n\n\tInsira novamente: ");
                         valido = double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out peso);
                     }
 
@@ -98,20 +108,23 @@ namespace DiagnosticoPrevio
                     while (valido == false || altura <= 0 || altura > 2.6)
                     {
                         Console.Clear();
-                        Console.Write("\n\tDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros! \n\t(apenas valores positivos, máximo: 2,6)\n\n\tInsira novamente: ");
+                        Cabecalho();
+                        Console.Write("\n\n\tDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros! \n\t(apenas valores positivos, máximo: 2,6)\n\n\tInsira novamente: ");
                         valido = double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura);
                     }
 
                     Console.Clear();
+                    Cabecalho();
 
                     //Opção de revisar e reinserir os dados caso haja algum erro durante o fornecimento dos mesmos
-                    Console.Write($"\n\tDADOS:" +
-                                  $"\n\n\tNome: {nome}" +
-                                  $"\n\tSexo: {sexo}" +
-                                  $"\n\tIdade: {idade}" +
-                                  $"\n\tPeso: {peso}" +
-                                  $"\n\tAltura: {altura}" +
-                                  $"\n\n\tConfirmar dados (S/N)? ");
+                    Console.Write($"\n\n\tDADOS:" +
+                                  $"\n\n\tNome:\t{nome}" +
+                                  $"\n\tSexo:\t{sexo}" +
+                                  $"\n\tIdade:\t{idade}" +
+                                  $"\n\tPeso:\t{peso}" +
+                                  $"\n\tAltura:\t{altura}\n\n");
+                    Divisorias("=");
+                    Console.Write("\tConfirmar dados (S/N)? ");
 
                     
                     loop = Console.ReadLine();
@@ -121,7 +134,9 @@ namespace DiagnosticoPrevio
                     //Validação do Caracter indicativo do loop para reinserção de dados:
                     while (loop != "S" && loop != "N")
                     {
-                        Console.Write("\n\tDesculpe, não consegui entender a sua escolha.\n\n\tInsira novamente (S/N): ");
+                        Console.Write("\n");
+                        Divisorias("=");
+                        Console.Write("\tDesculpe, não consegui entender a sua escolha.\n\n\tInsira novamente (S/N): ");
                         loop = Console.ReadLine();
                         loop = loop.ToUpper();
                     }
@@ -148,30 +163,40 @@ namespace DiagnosticoPrevio
                 categoriaImc = CategoriaImc(imc); //Função CategoriaImc recebe o valor do IMC para definir a categoria do IMC a ser exibida
 
 
-                Console.WriteLine("\n\tDIAGNÓSTICO PRÉVIO\n");
-                Console.WriteLine($"\tNome: {nome}\n" +
-                                  $"\tSexo: {sexo}\n" +
-                                  $"\tIdade: {idade}\n" +
-                                  $"\tAltura: {altura}\n" +
-                                  $"\tPeso: {peso}\n" +
-                                  $"\tCategoria: {categoria}\n\n");
+                Cabecalho();
 
+                //Imprimindo os dados do usuário na tela, utilizando espaços e "\t" para alinhá-los verticalmente
+                Console.WriteLine($"\n\n\tNome:\t   {nome}\n" +
+                                  $"\tSexo:\t   {sexo}\n" +
+                                  $"\tIdade:\t   {idade}\n" +
+                                  $"\tAltura:\t   {altura}\n" +
+                                  $"\tPeso:\t   {peso}\n" +
+                                  $"\tCategoria: {categoria}\n");
+
+                Divisorias("=");
+
+                //Imprimindo o IMC desejável, o resultado do IMC do usuário e riscos e recomendações associados
                 Console.WriteLine($"\tIMC Desejável: entre 20 e 24\n\n" +
                                   $"\tResultado IMC: {Math.Round(imc, 2)}" + " - " + $"{categoriaImc}\n\n" +
                                   $"\tRiscos: {riscos}\n\n" +
-                                  $"\tRecomendações: {recomendacoes}\n\n");
+                                  $"\tRecomendações: {recomendacoes}\n");
+
+                Divisorias("=");
 
 
                 //Opção de realizar um novo diagnóstico prévio com a inserção de novos dados
-                Console.Write("\n\n\tDeseja inserir novos dados para diagnóstico prévio(S/N)? ");
+                Console.Write("\tDeseja inserir novos dados para diagnóstico prévio(S/N)? ");
                 loop = Console.ReadLine();
                 loop = loop.ToUpper(); //Coloca a string "loop" em caixa alta para tornar indiferente a escolha entre
                                        //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
+                
 
                 //Validação do Caracter indicativo do loop:
                 while (loop != "S" && loop != "N")
                 {
-                    Console.Write("\n\tDesculpe, não consegui entender a sua escolha.\n\n\tInsira novamente (S/N): ");
+                    Console.Write("\n");
+                    Divisorias("=");
+                    Console.Write("\tDesculpe, não consegui entender a sua escolha.\n\n\tInsira novamente (S/N): ");
                     loop = Console.ReadLine();
                     loop = loop.ToUpper();
                 }
@@ -181,7 +206,9 @@ namespace DiagnosticoPrevio
             } while (loop == "S");
 
             Console.Clear();
-            Console.WriteLine("\n\tObrigado pela preferência!\n\n\tAté mais e siga com saúde!\n\n");
+            Cabecalho();
+            Console.WriteLine($"\n\n\tObrigado pela preferência, {nome}!\n\n\tAté mais e siga com saúde!\n");
+            Divisorias("=");
                         
         }
             static double Imc(double altura, double peso)
@@ -261,6 +288,33 @@ namespace DiagnosticoPrevio
 
                 return cat;
             }
+
+            static void Divisorias(string simbolo)
+            {
+
+            for (int i = 0; i < Console.WindowWidth/simbolo.Length; i++)
+                {
+                Console.Write(simbolo);
+                }
+
+            Console.WriteLine("\n");
+            }
+
+            static void Cabecalho()
+            {
+            Console.Write("\n       ");
+            for (int i = 0; i < 40; i++)
+            {
+                Console.Write("=");
+            }
+
+            Console.Write("    DIAGNÓSTICO PRÉVIO    ");
+
+            for (int i = 0; i < 40; i++)
+            {
+                Console.Write("=");
+            }
+        }
 
     }
 }
