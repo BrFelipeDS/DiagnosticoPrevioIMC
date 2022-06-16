@@ -9,17 +9,17 @@ namespace DiagnosticoPrevio
         {
 
             ///Declaração das Variáveis
-            int idade, editor = 0; //Variável editor armazena valor dado pelo usuário para escolher qual informação deseja editar
+            int idade, editor = 0; //Variável editor armazena valor dado pelo usuário para escolher qual informação deseja editar posteriormente
             double imc, altura, peso;
-            string nome, sexo, loop, categoria = null, riscos = null, recomendacoes = null, categoriaImc = null;
+            string nome, sexo, loop, categoria = null, riscos = null, recomendacoes = null, categoriaImc = null; //variavel loop é utilzada para repetir o programa de acordo com a escolha do usuário
             bool valido; //Variável booleana utilizada para validação de dados
            
-            do
+            do //Estrutura de repetição para retornar ao início do programa caso seja escolha do usuário ao final da execução, condição se encontra no fechamento das chaves
             {
                 //Obtenção dos Dados:
-                do
+                do //Estrutura de repetição para retornar ao início do programa caso seja escolha do usuário reinserir todos os dados
                 {
-                    Cabecalho(); //Função que gera o cabeçalho no topo do console
+                    Cabecalho(); //Função que gera o cabeçalho no topo do console sempre que chamada
 
                     
                     Console.Write("\n\n\tOlá! Bem vindo(a) ao programa de Diagnóstico Prévio do nutricionista Luciano!\n\n");
@@ -29,23 +29,22 @@ namespace DiagnosticoPrevio
 
                     //Obtenção do Nome, Sexo, Idade, Peso e Altura:
 
-                    nome = LeNome();                    
+                    nome = LeNome(); //Função que realiza a leitura e validação de dados do nome                   
 
                     Console.Write($"\n\n\tBem vindo(a), {nome}!\n\n");
                     
-                    sexo = LeSexo();
+                    sexo = LeSexo(); //Função que realiza a leitura e validação de dados do sexo
 
-                    idade = LeIdade();
+                    idade = LeIdade(); //Função que realiza a leitura e validação de dados da idade
 
-                    altura = LeAltura();
+                    altura = LeAltura(); //Função que realiza a leitura e validação de dados da altura
 
-                    peso = LePeso();
+                    peso = LePeso(); //Função que realiza a leitura e validação de dados do peso
 
-                    //Opção de revisar e reinserir os dados caso haja algum erro durante o fornecimento dos mesmos
 
-                    do
+                    do //Opção de revisar e reinserir os dados caso haja algum erro durante o fornecimento dos mesmos
                     {
-
+                        //"\t" e "\n" são utilizados para realizar o alinhamento vertical dos itens e as quebras de linha desejadas
                         Console.Write($"\n\n\tDADOS:" +
                                       $"\n\n\tNome:\t{nome}" +
                                       $"\n\tSexo:\t{sexo}" +
@@ -55,7 +54,7 @@ namespace DiagnosticoPrevio
                         Divisorias();
                         Console.Write("\tConfirmar dados (S/N)? ");
 
-
+                        //Leitura da variável loop que vai definir se o programa prosseguirá ou retornará a determinado ponto
                         loop = Console.ReadLine();
                         loop = loop.ToUpper(); //Coloca a string "loop" em caixa alta para tornar indiferente a escolha entre
                                                //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
@@ -70,9 +69,10 @@ namespace DiagnosticoPrevio
                             loop = loop.ToUpper();
                         }
 
-                        editor = 0;
+                        editor = 0; //Atribui 0 à variável editor para caso o usuário ja tenha selecionado 6 para reinserir todos os dados anteriormente no trecho a seguir,
+                                    //o editor não fique preso no valor 6, que vai proporcionar o retorno ao início do programa, permitindo o resumo do código
 
-                        if (loop == "N")
+                        if (loop == "N") //Caso o usuário não confirme os dados, são dadas opções de correção específicas
                         {
                             Console.Write("\n");
                             Divisorias();
@@ -86,7 +86,7 @@ namespace DiagnosticoPrevio
                             Console.Write("\tInsira sua resposta (1 - 6): ");
                             valido = int.TryParse(Console.ReadLine(), out editor);
 
-                            while (valido == false || editor < 1 || editor > 6)
+                            while (valido == false || editor < 1 || editor > 6) //Validação de dados para a variável de correção de dados
                             {
                                 Console.Write("\n");
                                 Divisorias();
@@ -97,18 +97,19 @@ namespace DiagnosticoPrevio
                             Console.Clear();
                             Cabecalho();
 
+                            //Dependendo da opção escolhida, é chamada a função correspondente ao que quer ser alterado
                             if (editor == 1) { Console.Write("\n\n");  nome = LeNome(); }
                             else if (editor == 2) { Console.Write("\n\n"); sexo = LeSexo(); }
                             else if (editor == 3) { Console.Write("\n"); idade = LeIdade(); }
                             else if (editor == 4) { Console.Write("\n"); altura = LeAltura(); }
                             else if (editor == 5) { Console.Write("\n"); peso = LePeso(); }
-                            else { loop = "S"; }
+                            else { loop = "S"; } //Atribuído valor diferente de "N" para que o programa possa ter continuidade qual não seja escolhida nenhuma opção de 1 a 5
                         }
-                    } while (loop == "N");
+                    } while (loop == "N"); //Loop para reimprimir os dados com o valor corrigido
 
                     Console.Clear();
 
-                } while(editor == 6);
+                } while(editor == 6); //Caso o usuário digite 6, ele retorna ao início do programa para a reinserção de todos os dados
 
 
                 //Definição da Categoria do Paciente:
@@ -168,7 +169,7 @@ namespace DiagnosticoPrevio
 
                 Console.Clear();
                
-            } while (loop == "S");
+            } while (loop == "S"); //Se o usuário escolher inserir novos dados, o programa volta ao início
 
             Console.Clear();
             Cabecalho();
@@ -176,7 +177,8 @@ namespace DiagnosticoPrevio
             Divisorias();
                         
         }
-
+            
+            //Função que lê e valida entrada do nome
             static string LeNome()
         {
             string nome;
@@ -184,7 +186,7 @@ namespace DiagnosticoPrevio
             Console.Write("\tPor favor insira seu nome: ");
             nome = Console.ReadLine();
 
-            while (string.IsNullOrWhiteSpace(nome))
+            while (string.IsNullOrWhiteSpace(nome)) //Validação do nome: não aceita apenas espaço em branco
             {
                 Console.Clear();
                 Cabecalho();
@@ -195,9 +197,10 @@ namespace DiagnosticoPrevio
             Console.Clear();
             Cabecalho();
 
-            return nome;
-        }
+            return nome; //Retorno da função
+        }  
 
+            //Função que lê e valida entrada do sexo
             static string LeSexo()
         {
             string sexo;
@@ -227,18 +230,20 @@ namespace DiagnosticoPrevio
             Cabecalho();
 
             return sexo;
-        }
+        } 
 
+            //Função que lê e valida entrada da idade
             static int LeIdade()
         {
             int idade;
-            bool valido;
+            bool valido; //Variável utilizada para fazer a validação da entrada
 
             Console.Write("\n\n\tPara darmos continuidade, insira a sua idade em anos (máximo: 125): ");
-            valido = int.TryParse(Console.ReadLine(), out idade);
+            valido = int.TryParse(Console.ReadLine(), out idade); //Tenta fazer conversão para inteiro e atribuir para a variável idade
+                                                                  //Se conseguir, valido = true, se não, valido = false
 
             //Validação da Idade (Invalidadando idades negativas, não inteiras ou superiores a 125 (idade máxima que o ser humano
-            //consegue viver segundo cientistas)):
+            //consegue viver segundo cientistas) e menores ou iguais a 0):
             while (valido == false || idade <= 0 || idade > 125)
             {
                 Console.Clear();
@@ -250,17 +255,20 @@ namespace DiagnosticoPrevio
             Console.Clear();
             Cabecalho();
 
-            return idade;
+            return idade; //Retorno da Função
 
         }
 
+            //Função que lê e valida entrada da altura
             static double LeAltura()
         {
             double altura;
-            bool valido;
+            bool valido; //Variável utilizada para fazer a validação da entrada
 
             Console.Write("\n\n\tÓtimo! Por gentileza, insira a sua altura em metros (máximo: 2,6): ");
             valido = double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura);
+                                                            //Tenta fazer conversão para double e atribuir para a variável altura
+                                                            //Se conseguir, valido = true, se não, valido = false                                                                      
                                                                                     //Replace juntamente com o NumberStyles.Number
                                                                                     //possibilitam a inserção de valores decimais
                                                                                     //com ponto ou vírgula. O InvariantCulture desconsidera
@@ -275,6 +283,7 @@ namespace DiagnosticoPrevio
                 Cabecalho();
                 Console.Write("\n\n\tDesculpe, não consegui entender a sua altura. Lembre de digitá-la em metros! \n\t(apenas valores positivos, máximo: 2,6)\n\n\tInsira novamente: ");
                 valido = double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura);
+                                        
             }
 
             Console.Clear();
@@ -283,6 +292,7 @@ namespace DiagnosticoPrevio
             return altura;
         }
 
+            //Função que lê e valida entrada do peso
             static double LePeso()
         {
             double peso;
@@ -307,17 +317,20 @@ namespace DiagnosticoPrevio
             return peso;
         }           
 
+            //Função que calcula e retorna o IMC
             static double Imc(double altura, double peso)
             {
-                double imc = peso / Math.Pow(altura, 2);
+                double imc = peso / Math.Pow(altura, 2); //Fórmula do IMC
                 
                 return imc;
             }
 
+            //Atribui os riscos de acordo com o IMC
             static string Riscos(double imc)
             {
                 string risks = null;
-
+                
+                //Dependendo do valor do IMC, é atribuído um texto à string de riscos
                 if (imc >= 35){ risks = "O obeso mórbido vive menos, tem alto risco de mortalidade geral por diversas causas."; }
 
                 if (imc < 35 && imc >= 30){ risks = "Quem tem obesidade vai estar mais exposto a doenças graves \n\te ao risco de " +
@@ -334,10 +347,12 @@ namespace DiagnosticoPrevio
                 return risks;
             }
 
+            //Atribui as recomendações de acordo com o IMC
             static string Recomendacoes(double imc)
             {
                 string recom = null;
 
+                //Dependendo do valor do IMC, é atribuído um texto à string de recomendações
                 if (imc >= 35){ recom = "Procure com urgência o acompanhamento de um nutricionista para realizar reeducação \n\t" +
                                                 "alimentar, um psicólogo e um médico especialista(endócrino).";}                  
                 
@@ -356,10 +371,12 @@ namespace DiagnosticoPrevio
                 return recom;
             }
 
+            //Atribui a categoria de acordo com o IMC
             static string CategoriaImc(double imc)
             {
                 string catImc = null;
 
+                //Dependendo do valor do IMC, é atribuído um texto à string de Categoria do IMC
                 if (imc >= 35) { catImc = "Super Obesidade"; }
 
                 if (imc < 35 && imc >= 30) { catImc = "Obesidade"; }
@@ -373,10 +390,12 @@ namespace DiagnosticoPrevio
                 return catImc;
             }
 
+            //Atribui a categoria etária de acordo com a idade
             static string Categoria(int idade)
             {
                 string cat = null;
 
+                //Atribui a categoria etária de acordo com a idade
                 if (idade > 65) { cat = "Idoso"; }
                 if (idade >= 21 && idade <= 65) { cat = "Adulto"; }
                 if (idade >= 12 && idade <= 20) { cat = "Juvenil"; }
@@ -388,13 +407,13 @@ namespace DiagnosticoPrevio
             static void Divisorias()
             {
 
-            for (int i = 0; i < Console.WindowWidth; i++)
+            for (int i = 0; i < Console.WindowWidth; i++) //Cria uma divisória do tamanho da janela do console
                 {
                 Console.Write("=");
                 }
 
             Console.WriteLine("\n");
-            }
+            } //Cria divisórias no console sempre que chamado
 
             static void Cabecalho()
             {
@@ -410,7 +429,6 @@ namespace DiagnosticoPrevio
             {
                 Console.Write("=");
             }
-        }
-
+        } //Cria um cabeçalho sempre que chamado
     }
 }
