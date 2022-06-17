@@ -55,9 +55,9 @@ namespace DiagnosticoPrevio
                         Console.Write("\tConfirmar dados (S/N)? ");
 
                         //Leitura da variável loop que vai definir se o programa prosseguirá ou retornará a determinado ponto
-                        loop = Console.ReadLine();
-                        loop = loop.ToUpper(); //Coloca a string "loop" em caixa alta para tornar indiferente a escolha entre
-                                               //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
+                        loop = Console.ReadLine().ToUpper();//Coloca a string "loop" em caixa alta para tornar indiferente a escolha entre
+                                                            //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
+
 
                         //Validação do Caracter indicativo do loop para reinserção de dados:
                         while (loop != "S" && loop != "N")
@@ -65,12 +65,11 @@ namespace DiagnosticoPrevio
                             Console.Write("\n");
                             Divisorias();
                             Console.Write("\tDesculpe, não consegui entender a sua escolha.\n\n\tInsira novamente (S para 'Sim' e N para 'Não'): ");
-                            loop = Console.ReadLine();
-                            loop = loop.ToUpper();
+                            loop = Console.ReadLine().ToUpper();                            
                         }
 
                         editor = 0; //Atribui 0 à variável editor para caso o usuário ja tenha selecionado 6 para reinserir todos os dados anteriormente no trecho a seguir,
-                                    //o editor não fique preso no valor 6, que vai proporcionar o retorno ao início do programa, permitindo o resumo do código
+                                    //o editor não fique preso no valor 6 (que vai proporciona o retorno ao início do programa), permitindo o resumo do código
 
                         if (loop == "N") //Caso o usuário não confirme os dados, são dadas opções de correção específicas
                         {
@@ -103,7 +102,7 @@ namespace DiagnosticoPrevio
                             else if (editor == 3) { Console.Write("\n"); idade = Convert.ToInt32(LeDados("idade")); }
                             else if (editor == 4) { Console.Write("\n"); altura = Convert.ToDouble(LeDados("altura")); }
                             else if (editor == 5) { Console.Write("\n"); peso = Convert.ToDouble(LeDados("peso")); }
-                            else { loop = "S"; } //Atribuído valor diferente de "N" para que o programa possa ter continuidade qual não seja escolhida nenhuma opção de 1 a 5
+                            else { loop = "S"; } //Atribuído valor diferente de "N" para que o programa possa ter continuidade caso não seja escolhida nenhuma opção de 1 a 5
                         }
                     } while (loop == "N"); //Loop para reimprimir os dados com o valor corrigido
 
@@ -152,10 +151,10 @@ namespace DiagnosticoPrevio
 
                 //Opção de realizar um novo diagnóstico prévio com a inserção de novos dados
                 Console.Write("\tDeseja inserir novos dados para diagnóstico prévio (S/N)? ");
-                loop = Console.ReadLine();
-                loop = loop.ToUpper(); //Coloca a string "loop" em caixa alta para tornar indiferente a escolha entre
-                                       //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
-                
+                loop = Console.ReadLine().ToUpper();//Coloca a string "loop" em caixa alta para tornar indiferente a escolha entre
+                                                    //a inserção de letras minúsculas ou maiúsculas, dando mais liberdade ao usuário
+
+
 
                 //Validação do Caracter indicativo do loop:
                 while (loop != "S" && loop != "N")
@@ -163,8 +162,7 @@ namespace DiagnosticoPrevio
                     Console.Write("\n");
                     Divisorias();
                     Console.Write("\tDesculpe, não consegui entender a sua escolha.\n\n\tInsira novamente (S para 'Sim' e N para 'Não'): ");
-                    loop = Console.ReadLine();
-                    loop = loop.ToUpper();
+                    loop = Console.ReadLine().ToUpper();                    
                 }
 
                 Console.Clear();
