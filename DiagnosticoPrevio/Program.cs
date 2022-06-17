@@ -8,10 +8,10 @@ namespace DiagnosticoPrevio
         static void Main(string[] args)
         {
 
-            ///Declaração das Variáveis
-            int idade, editor = 0; //Variável editor armazena valor dado pelo usuário para escolher qual informação deseja editar posteriormente
+            //Declaração das Variáveis
+            int idade, editor; //Variável editor armazena valor dado pelo usuário para escolher qual informação deseja editar posteriormente
             double imc, altura, peso;
-            string nome, sexo, loop, categoria = null, riscos = null, recomendacoes = null, categoriaImc = null; //Variável loop é utilzada para repetir o programa de acordo com a escolha do usuário
+            string nome, sexo, loop, categoria, riscos, recomendacoes, categoriaImc; //Variável loop é utilzada para repetir o programa de acordo com a escolha do usuário
             bool valido; //Variável booleana utilizada para validação de dados
            
             do //Estrutura de repetição para retornar ao início do programa caso seja escolha do usuário ao final da execução, condição se encontra no fechamento das chaves
@@ -29,17 +29,17 @@ namespace DiagnosticoPrevio
 
                     //Obtenção do Nome, Sexo, Idade, Peso e Altura:
                                       
-                    nome = LeDados("nome").ToString();
+                    nome = LeDados("nome").ToString(); //Chamada da função LeDados para obtenção do nome, convertendo o retorno do tipo global "object" para o tipo string da variável "nome"
 
                     Console.Write($"\n\n\tBem vindo(a), {nome}!\n\n");
                     
-                    sexo = LeDados("sexo").ToString();                                     
+                    sexo = LeDados("sexo").ToString(); //Chamada da função LeDados para obtenção do sexo, convertendo o retorno do tipo global "object" para o tipo string da variável "sexo"                                    
 
-                    idade = Convert.ToInt32(LeDados("idade"));
-                   
-                    altura = Convert.ToDouble(LeDados("altura"));
-                    
-                    peso = Convert.ToDouble(LeDados("peso"));
+                    idade = Convert.ToInt32(LeDados("idade")); //Chamada da função LeDados para obtenção da idade, convertendo o retorno do tipo global "object" para o tipo int da variável "idade"
+
+                    altura = Convert.ToDouble(LeDados("altura")); //Chamada da função LeDados para obtenção da altura, convertendo o retorno do tipo global "object" para o tipo double da variável "altura"
+
+                    peso = Convert.ToDouble(LeDados("peso")); //Chamada da função LeDados para obtenção do peso, convertendo o retorno do tipo global "object" para o tipo double da variável "peso"
 
 
                     do //Opção de revisar e reinserir os dados caso haja algum erro durante o fornecimento dos mesmos
@@ -177,7 +177,8 @@ namespace DiagnosticoPrevio
         }
 
         /// <summary>
-        /// Função que lê os dados de acordo com o parâmetro passado para a função (nome, sexo, idade, altura e peso)
+        /// Função que lê os dados de acordo com o parâmetro passado para a função (nome, sexo, idade, altura e peso). O tipo de retorno
+        /// object permite a utilização da função para obtenção de valores para variáveis de tipos variados (string, int, double, ...)
         /// </summary>
         /// <param name="parametro">O parametro pode ser "nome", "sexo", "idade", "altura" ou "peso"</param>
         /// <returns>Retorna o nome, sexo, idade, altura ou peso, de acordo com o "parametro"</returns>
