@@ -19,7 +19,7 @@ namespace DiagnosticoPrevio
                 //Obtenção dos Dados:
                 do //Estrutura de repetição para retornar ao início do programa caso seja escolha do usuário reinserir todos os dados
                 {
-                    Cabecalho(); //Função que gera o cabeçalho no topo do console sempre que chamada
+                    Cabecalho(); //Função que gera um cabeçalho sempre que chamada. Deve ser chamada sempre após um Console.Clear e antes de qualquer outra impressão
 
                     
                     Console.Write("\n\n\tOlá! Bem vindo(a) ao programa de Diagnóstico Prévio do nutricionista Luciano!\n\n");
@@ -49,8 +49,8 @@ namespace DiagnosticoPrevio
                                       $"\n\n\tNome:\t{nome}" +
                                       $"\n\tSexo:\t{sexo}" +
                                       $"\n\tIdade:\t{idade} anos" +
-                                      $"\n\tAltura:\t{altura} metro(s)" +
-                                      $"\n\tPeso:\t{peso} Kg\n\n");
+                                      $"\n\tAltura:\t{altura:0.00} metro(s)" + //":0.00" define 2 casas decimais na exibição do valor no console
+                                      $"\n\tPeso:\t{peso:0.00} Kg\n\n");
                         Divisorias();
                         Console.Write("\tConfirmar dados (S/N)? ");
 
@@ -83,9 +83,10 @@ namespace DiagnosticoPrevio
                                               "\t5 - Peso\n" +
                                               "\t6 - Reinserir todos os dados\n\n");
                             Console.Write("\tInsira sua resposta (1 - 6): ");
-                            valido = int.TryParse(Console.ReadLine(), out editor);
+                            valido = int.TryParse(Console.ReadLine(), out editor); //Tenta fazer a conversão da entrada para int e guardar o valor inserido na variável "editor"
+                                                                                   //Caso a conversão falhe, a função retorna false e guarda na variável booleana "valido" que é usada para validar o dado inserido
 
-                            while (valido == false || editor < 1 || editor > 6) //Validação de dados para a variável de correção de dados
+                            while (valido == false || editor < 1 || editor > 6) //Validação de dados para a variável de correção de dados do usuário
                             {
                                 Console.Write("\n");
                                 Divisorias();
@@ -134,8 +135,8 @@ namespace DiagnosticoPrevio
                 Console.WriteLine($"\n\n\tNome:\t   {nome}\n" +
                                   $"\tSexo:\t   {sexo}\n" +
                                   $"\tIdade:\t   {idade} anos\n" +
-                                  $"\tAltura:\t   {altura} metro(s)\n" +
-                                  $"\tPeso:\t   {peso} Kg\n" +
+                                  $"\tAltura:\t   {altura:0.00} metro(s)\n" +
+                                  $"\tPeso:\t   {peso:0.00} Kg\n" +
                                   $"\tCategoria: {categoria}\n");
 
                 Divisorias();
@@ -167,7 +168,7 @@ namespace DiagnosticoPrevio
 
                 Console.Clear();
                
-            } while (loop == "S"); //Se o usuário escolher inserir novos dados, o programa volta ao início
+            } while (loop == "S"); //Se o usuário escolher "S" para inserir novos dados, o programa volta ao início, se escolher "N", o programa é finalizado
 
             Console.Clear();
             Cabecalho();
@@ -191,7 +192,7 @@ namespace DiagnosticoPrevio
             if (parametro == "nome")
             {
                 Console.Write("\tPor favor insira seu nome: ");
-                dado = Console.ReadLine();
+                dado = Console.ReadLine(); //Lê o dado fornecido pelo usuário e armazena na variável dado
 
                 while (string.IsNullOrWhiteSpace(dado.ToString())) //Validação do nome: não aceita apenas espaço em branco
                 {
@@ -313,7 +314,7 @@ namespace DiagnosticoPrevio
                 dado = peso;
             }
 
-            return dado;
+            return dado; //Dependendo do parâmetro escolhido, a função retorna o dado em questão (nome, sexo, idade, altura ou peso)
         }
 
 
@@ -327,7 +328,7 @@ namespace DiagnosticoPrevio
             {
                 double imc = peso / Math.Pow(altura, 2); //Fórmula do IMC
                 
-                return imc;
+                return imc; //Retorna o valor calculado na fórmula do IMC baseado na altura e peso fornecido pelo usuário
             }
 
 
@@ -339,7 +340,7 @@ namespace DiagnosticoPrevio
         /// <returns>Retorna os Riscos, Recomendações ou Categoria do IMC com base no "parametro"</returns>
         static string DefineRRC(double imc, string parametro)
         {
-            string riscos = null, recomendacoes = null, categoriaImc = null;
+            string riscos = null, recomendacoes = null, categoriaImc = null; //Atribuídos valores iniciais nulos às variáveis pois suas atribuições são consideradas incertas pela IDE por estarem dentro de condicionais
 
             //Dependendo do valor do IMC, é atribuído um texto à string de riscos
             if (imc >= 35) 
@@ -377,6 +378,7 @@ namespace DiagnosticoPrevio
                 categoriaImc = "Abaixo do Peso Ideal";
             }
 
+            //Retorna o valor de acordo com o parâmetro chamado
             if(parametro == "riscos") { return riscos; }
             else if(parametro == "recomendações") { return recomendacoes; }
             else { return categoriaImc; }
@@ -390,15 +392,15 @@ namespace DiagnosticoPrevio
         /// <returns>Retorna a categoria etária do usuário, com base na idade</returns>
         static string Categoria(int idade)
             {
-                string cat = null;
+                string categoria = null;
 
                 //Atribui a categoria etária de acordo com a idade
-                if (idade > 65) { cat = "Idoso"; }
-                if (idade >= 21 && idade <= 65) { cat = "Adulto"; }
-                if (idade >= 12 && idade <= 20) { cat = "Juvenil"; }
-                if (idade < 12) { cat = "Infantil"; }
+                if (idade > 65) { categoria = "Idoso"; }
+                if (idade >= 21 && idade <= 65) { categoria = "Adulto"; }
+                if (idade >= 12 && idade <= 20) { categoria = "Juvenil"; }
+                if (idade < 12) { categoria = "Infantil"; }
 
-                return cat;
+                return categoria;
             }
 
 
@@ -410,12 +412,13 @@ namespace DiagnosticoPrevio
         static void Divisorias()
             {
 
-            for (int i = 0; i < Console.WindowWidth; i++) //Cria uma divisória do tamanho da janela do console
+            for (int i = 0; i < Console.WindowWidth; i++) //Cria uma divisória do tamanho da janela do console (Console.WindowWidth)
+                                                          //Laço de repetição que imprime um símbolo (=) repetidas vezes até preencher a largura do console
                 {
                 Console.Write("=");
                 }
 
-            Console.WriteLine("\n");
+            Console.WriteLine("\n"); //Quebra de linha ao finalizar a impressão da divisória
             }
         
         /// <summary>
@@ -424,14 +427,15 @@ namespace DiagnosticoPrevio
         static void Cabecalho()
             {
             Console.Write("\n       ");
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 40; i++) //Imprime repetidas vezes o símbolo em questão (=) determinado número de vezes antes de imprimir o título do cabeçalho
             {
                 Console.Write("=");
             }
 
-            Console.Write("    DIAGNÓSTICO PRÉVIO    ");
+            Console.Write("    DIAGNÓSTICO PRÉVIO    "); //Imprime o título do cabeçalho
 
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 40; i++) //Imprime repetidas vezes o símbolo em questão (=) determinado número de vezes após imprimir o título do cabeçalho
+                                         //A quantidade de repetições foi definida através de tentativa e erro, buscando implementar o layout mais agradável de acordo com a visualização do console
             {
                 Console.Write("=");
             }
