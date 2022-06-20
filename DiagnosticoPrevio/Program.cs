@@ -174,6 +174,8 @@ namespace DiagnosticoPrevio
             Cabecalho();
             Console.WriteLine($"\n\n\tObrigado pela preferência, {nome}!\n\n\tAté mais e siga com saúde!\n");
             Divisorias();
+            Console.WriteLine("\t\t\t\t\tThis program is powered by Python©!\n");
+            Divisorias();
                         
         }
 
